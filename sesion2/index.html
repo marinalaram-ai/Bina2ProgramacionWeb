@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="AURA - Plataforma de música en alta fidelidad">
+  <title>AURA | Música en Alta Fidelidad</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Enlace de salto para accesibilidad (usuarios de teclado / lector de pantalla) -->
+  <a href="#contenido" class="skip-link">Saltar al contenido principal</a>
+
+  <div class="layout">
+    <!-- ============ BARRA LATERAL DE NAVEGACIÓN ============ -->
+    <aside class="sidebar" aria-label="Barra lateral">
+      <a href="#" class="logo" data-view="home" aria-label="AURA, ir al inicio">
+        <span class="logo-icon" aria-hidden="true">♛</span>
+        <span class="logo-text">AURA</span>
+      </a>
+
+      <nav aria-label="Navegación principal">
+        <h2 class="nav-title">Discover</h2>
+        <ul class="nav-list">
+          <li><a href="#" class="nav-link active" data-view="home"><span aria-hidden="true">⌂</span> Home</a></li>
+          <li><a href="#" class="nav-link" data-view="search"><span aria-hidden="true">⌕</span> Search</a></li>
+          <li><a href="#" class="nav-link" data-view="lounges"><span aria-hidden="true">♜</span> VIP Lounges</a></li>
+          <li><a href="#" class="nav-link" data-view="charts"><span aria-hidden="true">▥</span> Top Charts</a></li>
+        </ul>
+
+        <h2 class="nav-title">Your Library</h2>
+        <ul class="nav-list">
+          <li><a href="#" class="nav-link" data-view="favorites"><span aria-hidden="true">♡</span> Favorites <span class="badge" id="favCount">0</span></a></li>
+          <li><a href="#" class="nav-link" data-view="playlist"><span aria-hidden="true">≡</span> Velvet Playlists <span class="badge" id="plCount">0</span></a></li>
+          <li><a href="#" class="nav-link" data-view="vault"><span aria-hidden="true">☁</span> Offline Vault</a></li>
+        </ul>
+      </nav>
+
+      <section class="lounge-pass" aria-labelledby="pass-title">
+        <h2 id="pass-title">Lounge Pass</h2>
+        <p>Enjoy unlimited ultra-high fidelity audio up to 192kHz/24-bit.</p>
+      </section>
+    </aside>
+
+    <!-- ============ CONTENIDO PRINCIPAL ============ -->
+    <main id="contenido" class="main" tabindex="-1">
+
+      <!-- Barra de búsqueda (siempre visible) -->
+      <header class="topbar">
+        <form class="search-form" role="search" id="searchForm">
+          <label for="searchInput" class="sr-only">Buscar canciones, artistas o géneros</label>
+          <span class="search-icon" aria-hidden="true">⌕</span>
+          <input type="search" id="searchInput" placeholder="Search songs, artists or genres…" autocomplete="off">
+          <button type="button" class="clear-btn" id="clearSearch" aria-label="Limpiar búsqueda" hidden>✕</button>
+        </form>
+      </header>
+
+      <!-- ===== VISTA: RESULTADOS DE BÚSQUEDA ===== -->
+      <section class="view" id="view-search" aria-labelledby="search-title" hidden>
+        <header class="section-head">
+          <h2 id="search-title">Search</h2>
+          <p id="searchSummary">Type to find tracks by title, artist or genre.</p>
+        </header>
+        <div class="genre-filters" role="group" aria-label="Filtrar por género" id="genreFilters"></div>
+        <ol class="track-list" id="searchResults" aria-live="polite"></ol>
+      </section>
+
+      <!-- ===== VISTA: FAVORITOS ===== -->
+      <section class="view" id="view-favorites" aria-labelledby="fav-title" hidden>
+        <header class="section-head">
+          <h2 id="fav-title">Favorites</h2>
+          <p>Tracks you marked with ♡.</p>
+        </header>
+        <ol class="track-list" id="favList"></ol>
+      </section>
+
+      <!-- ===== VISTA: MI PLAYLIST ===== -->
+      <section class="view" id="view-playlist" aria-labelledby="pl-title" hidden>
+        <header class="section-head">
+          <h2 id="pl-title">Velvet Playlists</h2>
+          <p>Build your own queue: add tracks with ＋, reorder or remove them.</p>
+        </header>
+        <div class="playlist-actions">
+          <button class="btn btn-gold" id="playAllBtn">▶ Play playlist</button>
+          <button class="btn btn-outline" id="clearPlaylistBtn">Clear</button>
+        </div>
+        <ol class="track-list" id="playlistList"></ol>
+      </section>
+
+      <!-- ===== VISTA: SECCIONES AÚN NO DISPONIBLES ===== -->
+      <section class="view" id="view-soon" aria-labelledby="soon-title" hidden>
+        <header class="section-head">
+          <h2 id="soon-title">Coming soon</h2>
+          <p>This lounge is being prepared. Meanwhile, explore Home.</p>
+        </header>
+      </section>
+
+      <!-- ===== VISTA: INICIO ===== -->
+      <div class="view" id="view-home">
+        <!-- Hero -->
+        <section class="hero" aria-labelledby="hero-title">
+          <div class="hero-content">
+            <p class="eyebrow"><span aria-hidden="true">♛</span> Exclusive Premiere</p>
+            <h1 id="hero-title">Nocturnes in Velvet &amp; Gold</h1>
+            <p class="hero-text">Experience the critically acclaimed live session by the Parisian Jazz Quintet, recorded in Ultra-HD exclusively at the Amber Chamber.</p>
+            <div class="hero-actions">
+              <button class="btn btn-gold" data-play="t9">▶ Listen Now</button>
+              <button class="btn btn-outline" id="tracklistBtn" aria-expanded="false" aria-controls="heroTracklist">≡ Explore Tracklist</button>
+            </div>
+            <ol class="hero-tracklist" id="heroTracklist" hidden></ol>
+          </div>
+        </section>
+
+        <!-- Trending -->
+        <section class="block" aria-labelledby="trending-title">
+          <header class="section-head">
+            <h2 id="trending-title">Trending Now</h2>
+            <p>The most-streamed tracks across high-end lounges globally</p>
+          </header>
+          <div class="grid grid-4" id="trendingGrid"></div>
+        </section>
+
+        <!-- Artistas -->
+        <section class="block" aria-labelledby="artists-title">
+          <header class="section-head">
+            <h2 id="artists-title">Featured Artists</h2>
+            <p>The voices shaping modern classical and deep ambient soul</p>
+          </header>
+          <ul class="artists" id="artistsList"></ul>
+        </section>
+
+        <!-- Nuevos lanzamientos -->
+        <section class="block" aria-labelledby="releases-title">
+          <header class="section-head">
+            <h2 id="releases-title">New Releases</h2>
+            <p>Impeccable new records available now in 24-bit studio master</p>
+          </header>
+          <div class="grid grid-4" id="releasesGrid"></div>
+        </section>
+
+        <!-- Playlists curadas -->
+        <section class="block" aria-labelledby="curated-title">
+          <header class="section-head">
+            <h2 id="curated-title">Curated Playlists</h2>
+            <p>Bespoke sonic experiences assembled by AURA masters</p>
+          </header>
+          <div class="grid grid-3" id="curatedGrid"></div>
+        </section>
+
+        <!-- Géneros -->
+        <section class="block" aria-labelledby="moods-title">
+          <header class="section-head">
+            <h2 id="moods-title">Moods &amp; Genres</h2>
+            <p>Select your sanctuary by acoustic register</p>
+          </header>
+          <div class="moods" id="moodsGrid"></div>
+        </section>
+
+        <!-- Álbum de la semana -->
+        <section class="block" aria-labelledby="aotw-title">
+          <article class="album-week">
+            <figure class="album-week-art art-a" aria-hidden="true"><span>♫</span></figure>
+            <div class="album-week-info">
+              <p class="eyebrow"><span aria-hidden="true">♕</span> Album of the week</p>
+              <h2 id="aotw-title">Chamber Symphony in D Minor</h2>
+              <p class="gold-text">The Royal Harmonic Conservatory, conducted by Klaus Sterling</p>
+              <p class="muted">An emotional masterclass in dynamic range. Recorded in a restored 14th-century monastery, utilizing ribbon microphones for maximum warmth and acoustic fidelity.</p>
+              <div class="hero-actions">
+                <button class="btn btn-gold" data-play="t10">▶ Play Album</button>
+                <button class="btn btn-ghost" data-fav="t10" id="saveAlbumBtn">☆ Save to Library</button>
+              </div>
+            </div>
+          </article>
+        </section>
+
+        <!-- Leaderboard -->
+        <section class="block" aria-labelledby="leader-title" id="charts">
+          <header class="section-head">
+            <h2 id="leader-title">Top Leaderboard</h2>
+            <p>The current elite recordings holding the listener collective</p>
+          </header>
+          <ol class="track-list" id="leaderboard"></ol>
+        </section>
+
+        <!-- Planes -->
+        <section class="block" aria-labelledby="tier-title">
+          <header class="section-head">
+            <h2 id="tier-title">Select Your Lounge Tier</h2>
+            <p>Mindfully designed plans with zero acoustic compromise</p>
+          </header>
+          <div class="grid grid-2">
+            <article class="plan">
+              <h3>Gold Listener</h3>
+              <p class="muted">Lossless quality up to 96kHz, full platform access.</p>
+              <p class="price">$14.99 <small>/month</small></p>
+              <ul class="features">
+                <li>96kHz / 24-bit Flac Streams</li>
+                <li>Offline download support</li>
+                <li>Exclusive curated playlists</li>
+              </ul>
+              <button class="btn btn-gold" data-plan="Gold Listener">⊙ Become a Member</button>
+            </article>
+            <article class="plan plan-featured">
+              <h3>Amber Audiophile</h3>
+              <p class="muted">Studio-master fidelity up to 192kHz, artist exclusives.</p>
+              <p class="price">$29.99 <small>/month</small></p>
+              <ul class="features">
+                <li>192kHz / 24-bit Studio Master</li>
+                <li>Early access to live premieres</li>
+                <li>Dedicated VIP curated sessions</li>
+                <li>Spatial Audio support</li>
+              </ul>
+              <button class="btn btn-gold" data-plan="Amber Audiophile">⊙ Become a Member</button>
+            </article>
+          </div>
+        </section>
+      </div>
+
+      <!-- ============ PIE DE PÁGINA ============ -->
+      <footer class="footer">
+        <div class="footer-grid">
+          <div>
+            <p class="logo"><span class="logo-icon" aria-hidden="true">♛</span> <span class="logo-text">AURA</span></p>
+            <p class="muted">Elevating music to its rightful plane of luxury. Pure, uncompressed acoustic art for the discerning collector.</p>
+          </div>
+          <nav aria-label="Navegación del pie">
+            <h2>Navigation</h2>
+            <ul><li><a href="#">Browse</a></li><li><a href="#">Premium Passes</a></li><li><a href="#">Live Rooms</a></li><li><a href="#">Vault</a></li></ul>
+          </nav>
+          <nav aria-label="Recursos">
+            <h2>Resources</h2>
+            <ul><li><a href="#">Hi-Res Audio Guide</a></li><li><a href="#">Compatible Hardware</a></li><li><a href="#">Editorial Journal</a></li></ul>
+          </nav>
+          <nav aria-label="Empresas">
+            <h2>Enterprise</h2>
+            <ul><li><a href="#">Hotel &amp; Lounge Licensing</a></li><li><a href="#">Artist Submissions</a></li><li><a href="#">Contact Atelier</a></li></ul>
+          </nav>
+        </div>
+        <div class="footer-bottom">
+          <small>© 2026 AURA Music Systems Ltd. All High-Fidelity content reserved.</small>
+          <small><a href="#">Privacy Policy</a> · <a href="#">Terms of Sound</a></small>
+        </div>
+      </footer>
+    </main>
+  </div>
+
+  <!-- ============ REPRODUCTOR FIJO ============ -->
+  <section class="player" aria-label="Reproductor de música">
+    <div class="player-track">
+      <figure class="player-art" id="playerArt" aria-hidden="true"></figure>
+      <div>
+        <p class="player-title" id="playerTitle">Select a track</p>
+        <p class="player-artist" id="playerArtist">—</p>
+      </div>
+      <button class="icon-btn" id="playerFav" aria-label="Agregar a favoritos" aria-pressed="false">♡</button>
+    </div>
+
+    <div class="player-center">
+      <div class="controls">
+        <button class="icon-btn" id="shuffleBtn" aria-label="Aleatorio" aria-pressed="false">⤮</button>
+        <button class="icon-btn" id="prevBtn" aria-label="Anterior">⏮</button>
+        <button class="play-btn" id="playBtn" aria-label="Reproducir">▶</button>
+        <button class="icon-btn" id="nextBtn" aria-label="Siguiente">⏭</button>
+        <button class="icon-btn" id="repeatBtn" aria-label="Repetir" aria-pressed="false">↻</button>
+      </div>
+      <div class="progress-row">
+        <span id="curTime">0:00</span>
+        <input type="range" id="progress" min="0" max="100" value="0" step="0.1" aria-label="Progreso de la canción">
+        <span id="durTime">0:00</span>
+      </div>
+    </div>
+
+    <div class="player-right">
+      <button class="icon-btn" id="queueBtn" data-view="playlist" aria-label="Ver playlist">≡</button>
+      <label for="volume" class="sr-only">Volumen</label>
+      <span aria-hidden="true">🔈</span>
+      <input type="range" id="volume" min="0" max="1" step="0.01" value="0.5">
+    </div>
+  </section>
+
+  <!-- Notificaciones (toast) accesibles -->
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
