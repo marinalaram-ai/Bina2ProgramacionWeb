@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <title>Girasole</title>
+    <meta name="Description" content="Restaurante de comida italiana">
+    <meta name="Viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="comida, italiana, gourmet, calidad, sabor">
+    <meta name="Author" content="Marina Lara Meza">
+    <meta name="copyright" content="Ebc">
+    <link rel="stylesheet" href="../style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+
+<body>
+    <!-- Barra de navegación -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="https://girasoleristorante.com/wp-content/uploads/2022/06/Girasole-Logo-Cafe.png" alt=""
+                    width="30" height="24">
+                Menu
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal"
+                            data-bs-target="#staticBackdrop">Contactanos</button>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Platillos
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#">Desayunos</a></li>
+                            <li><a class="dropdown-item" href="#">Comida</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- cuerpo -->
+    <div class="container">
+        <!-- carousel -->
+        <section>
+            <div id="carouselExampleControls" class="carousel carousel-dark slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="../sesion3/paella-de-marisco.jpg" class="d-block w-75 mx-auto" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="../sesion3/img/tacos.PNG" class="d-block w-75 mx-auto" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="../rissoto.PNG" class="d-block w-75 mx-auto" alt="...">
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </section>
+        <br>
+        <!-- Platillos -->
+        <section>
+            <h2 class="text-success">Platillos</h2>
+            <div>
+                <div>
+                    <h3 class="text-warning">Desayunos</h3>
+                    <article class="card" style="width: 20rem;">
+                        <img src="../sesion3/paella-de-marisco.jpg" class="card-img-top" alt="Platillo Principal">
+                        <div class="card-body">
+                            <h5 class="card-title text-danger">Paella</h5>
+                            <p class="card-text text-secondary">Descripcion</p>
+                            <p class="card-text text-dark">Costo</p>
+                            <button type="button" class="btn btn-success">Agregar</button>
+                            <button type="button" class="btn btn-danger">Eliminar</button>
+                        </div>
+                    </article>
+                    <article class="card" style="width: 20rem;">
+                        <img src="../sesion3/img/tacos.PNG" class="card-img-top" alt="Platillo Principal">
+                        <div class="card-body">
+                            <h5 class="card-title text-danger">Paella</h5>
+                            <p class="card-text text-secondary">Descripcion</p>
+                            <p class="card-text text-dark">Costo</p>
+                            <button type="button" class="btn btn-success">Agregar</button>
+                            <button type="button" class="btn btn-danger">Eliminar</button>
+                        </div>
+                    </article>
+                </div>
+
+                <div>
+                    <h3 class="text-warning">Comida</h3>
+                    <article class="card" style="width: 20rem;">
+                        <img src="../rissoto.PNG" class="card-img-top" alt="Platillo Principal">
+                        <div class="card-body">
+                            <h5 class="card-title text-danger">Paella</h5>
+                            <p class="card-text text-secondary">Descripcion</p>
+                            <p class="card-text text-dark">Costo</p>
+                            <button type="button" class="btn btn-success">Agregar</button>
+                            <button type="button" class="btn btn-danger">Eliminar</button>
+                        </div>
+                    </article>
+                    <div class="card" style="width: 20rem;">
+                        <img src="../rissoto.PNG">
+                        <div class="card-body">
+                            <h5 class="card-title text-danger">Rissoto</h5>
+                            <a href="#" class="btn btn-success">Agregar</a>
+                            <a href="#" class="btn btn-danger">Eliminar</a>
+                        </div>
+                    </div>
+                    <aside>
+                    </aside>
+                </div>
+            </div>
+        </section>
+        <footer>
+            <div class="alert alert-warning" role="alert">
+                Sitio en construcción, por favor regresa más tarde.
+            </div>
+        </footer>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Understood</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- script -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
