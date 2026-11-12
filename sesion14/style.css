@@ -1,0 +1,23 @@
+@media (max-width: 599px) {
+    body {
+        background-color: grey;
+    }
+}
+
+@media (min-width: 600px) and (max-width: 900px) {
+    body {
+        background-color: rgb(9, 228, 97);
+    }
+}
+
+@media (min-width: 901px) and (max-width: 1200px) {
+    body {
+        background-color: purple;
+    }
+}
+
+@media (min-width: 1201px) {
+    body {
+        background-color: red;
+    }
+}

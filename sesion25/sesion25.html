@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito de compras</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+        .card-img-top {
+            height: 160px;
+            object-fit: cover;
+        }
+
+    </style>
+</head>
+<body>
+    <!--
+        DISEÑO DE LA INTERFAZ
+        - Productos: 5 cards con imagen, nombre, precio y botón "Agregar".
+        - Carrito: contador de ítems, listado de ítems añadidos (con botón "Eliminar") y total.
+
+        ESTADOS VISUALES (colores de Bootstrap)
+        - Verde (success): al agregar, el ítem nuevo, el contador y el mensaje se ponen verdes
+          y el botón cambia a "¡Agregado!".
+        - Rojo (danger): al eliminar, el último ítem, el contador y el mensaje se ponen rojos.
+        - Contador actualizado: el número del carrito cambia en cada acción.
+
+        FLUJO DE INTERACCIÓN
+        - click Agregar → agregarProducto() → ítem al final de la lista en verde / contador +1
+        - click Eliminar último → eliminarProducto() → se quita el último ítem en rojo / contador -1
+    -->
+
+    <div class="container mt-4">
+        <h1 class="mb-4">Tienda</h1>
+
+        <div class="row">
+            <!-- Productos -->
+            <div class="col-md-8">
+                <h2 class="h4 mb-3">Productos</h2>
+                <div class="row g-3">
+                    <div class="col-sm-6 col-lg-4">
+                        <div class="card h-100">
+                            <img src="https://picsum.photos/seed/audifonos/300/200" class="card-img-top" alt="Audífonos">
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title">Audífonos</h5>
+                                <p class="card-text">$450</p>
+                                <button class="btn btn-primary btn-agregar mt-auto" type="button"
+                                    data-nombre="Audífonos" data-precio="450">Agregar</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 col-lg-4">
+                        <div class="card h-100">
+                            <img src="https://picsum.photos/seed/teclado/300/200" class="card-img-top" alt="Teclado">
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title">Teclado</h5>
+                                <p class="card-text">$600</p>
+                                <button class="btn btn-primary btn-agregar mt-auto" type="button"
+                                    data-nombre="Teclado" data-precio="600">Agregar</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 col-lg-4">
+                        <div class="card h-100">
+                            <img src="https://picsum.photos/seed/mouse/300/200" class="card-img-top" alt="Mouse">
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title">Mouse</h5>
+                                <p class="card-text">$250</p>
+                                <button class="btn btn-primary btn-agregar mt-auto" type="button"
+                                    data-nombre="Mouse" data-precio="250">Agregar</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 col-lg-4">
+                        <div class="card h-100">
+                            <img src="https://picsum.photos/seed/monitor/300/200" class="card-img-top" alt="Monitor">
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title">Monitor</h5>
+                                <p class="card-text">$2800</p>
+                                <button class="btn btn-primary btn-agregar mt-auto" type="button"
+                                    data-nombre="Monitor" data-precio="2800">Agregar</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 col-lg-4">
+                        <div class="card h-100">
+                            <img src="https://picsum.photos/seed/bocina/300/200" class="card-img-top" alt="Bocina">
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title">Bocina</h5>
+                                <p class="card-text">$900</p>
+                                <button class="btn btn-primary btn-agregar mt-auto" type="button"
+                                    data-nombre="Bocina" data-precio="900">Agregar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Carrito -->
+            <div class="col-md-4 mt-4 mt-md-0">
+                <div id="mensaje" class="alert d-none" role="status"></div>
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <span class="fw-bold">🛒 Carrito</span>
+                        <span id="contadorCarrito" class="badge bg-secondary">0</span>
+                    </div>
+                    <ul id="listaCarrito" class="list-group list-group-flush">
+                        <li id="carritoVacio" class="list-group-item text-muted">El carrito está vacío</li>
+                    </ul>
+                    <div class="card-footer">
+                        <div class="d-flex justify-content-between mb-2">
+                            <span class="fw-bold">Total:</span>
+                            <span id="totalCarrito" class="fw-bold">$0</span>
+                        </div>
+                        <button id="btnEliminar" class="btn btn-danger w-100" type="button">Eliminar último</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+</body>
+</html>
